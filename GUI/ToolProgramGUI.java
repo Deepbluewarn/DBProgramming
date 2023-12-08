@@ -3,7 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ToolProgramGUI extends JFrame {
-    private JButton btnRentTool, btnRentInfo, btnPostInfo, btnOverdue, btnMemberInfo,btnToolStats ;
+    private JButton btnRentTool, btnPostInfo, btnOverdue, btnMemberInfo,btnToolStats ;
     private DB_Conn_Query dbConnection;
 
     public ToolProgramGUI() {
@@ -21,22 +21,19 @@ public class ToolProgramGUI extends JFrame {
 
     private void initComponents() {
         btnRentTool = new JButton("공구대여");
-        btnRentInfo = new JButton("공구대여기록");
         btnPostInfo = new JButton("후기조회");
         btnOverdue = new JButton("연체현황조회");
-        btnMemberInfo = new JButton("회원조회");
+        btnMemberInfo = new JButton("회원대여통계");
         btnToolStats = new JButton("공구대여통계");
         
 
         btnRentTool.setBounds(10, 60, 120, 30);
-        btnRentInfo.setBounds(10, 100, 120, 30);
         btnPostInfo.setBounds(140, 60, 120, 30);
         btnOverdue.setBounds(140, 100, 120, 30);
         btnMemberInfo.setBounds(10, 140, 120, 30);
         btnToolStats.setBounds(140, 140, 120, 30);
         
         add(btnRentTool);
-        add(btnRentInfo);
         add(btnPostInfo);
         add(btnOverdue);
         add(btnMemberInfo);
@@ -45,12 +42,6 @@ public class ToolProgramGUI extends JFrame {
         btnRentTool.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 openRentToolWindow();
-            }
-        });
-
-        btnRentInfo.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                openRentInfoWindow();
             }
         });
 
@@ -84,11 +75,6 @@ public class ToolProgramGUI extends JFrame {
 
     private void openRentToolWindow() {
         RentToolWindow rentToolWindow = new RentToolWindow(dbConnection);
-    }
-    
-    private void openRentInfoWindow() {
-    	
-        RentInfoWindow rentInfoWindow = new RentInfoWindow(dbConnection);
     }
     
     private void openPostInfoWindow() {
