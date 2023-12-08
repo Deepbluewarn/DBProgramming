@@ -63,7 +63,11 @@ BEGIN
     close vCursor;
     
     OPEN TUsers for
-        select * from "회원";
+        select M.회원ID, M.이름, M.연락처, M.이메일, M.등록일, M.등급, count(*) as "대여횟수"
+        from 회원 M
+        join 대여기록 D on M.회원ID = D.회원ID
+        group by M.회원ID, M.이름, M.연락처, M.이메일, M.등록일, M.등급
+        order by M.회원ID;
 END UpdateUserGrade;
 
 -- 실행 예시
