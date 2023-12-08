@@ -128,16 +128,8 @@ public class OverdueInfoWindow extends JFrame {
                 long daysDiff = diff / (24 * 60 * 60 * 1000);
 
                 // 14일 이상 차이가 나는지 확인
-                if (daysDiff < -14) {
+                if (daysDiff < -14 && actualReturnDate == null) {
                     // 연체된 레코드에 대해 빨간 글자 및 볼드 적용
-                    component.setFont(component.getFont().deriveFont(Font.BOLD));
-                    component.setForeground(Color.RED);
-                } else if (daysDiff == -14 && actualReturnDate != null) {
-                    // 14일 이전에 반납된 레코드에 대해 검은 글자 및 볼드 적용
-                    component.setFont(component.getFont().deriveFont(Font.BOLD));
-                    component.setForeground(Color.BLACK);
-                } else if (actualReturnDate == null) {
-                    // 반환일이 없는 레코드에 대해 빨간 글자 및 볼드 적용
                     component.setFont(component.getFont().deriveFont(Font.BOLD));
                     component.setForeground(Color.RED);
                 } else {
