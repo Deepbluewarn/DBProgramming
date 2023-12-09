@@ -3,7 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ToolProgramGUI extends JFrame {
-    private JButton btnRentTool, btnPostInfo, btnOverdue, btnMemberInfo,btnToolStats ;
+    private JButton btnRentTool, btnPostInfo, btnOverdue, btnMemberInfo,btnToolStats,btnReturnTool ;
     private DB_Conn_Query dbConnection;
 
     public ToolProgramGUI() {
@@ -21,13 +21,14 @@ public class ToolProgramGUI extends JFrame {
 
     private void initComponents() {
         btnRentTool = new JButton("공구대여");
+        btnReturnTool = new JButton("공구반납");
         btnPostInfo = new JButton("후기조회");
         btnOverdue = new JButton("연체현황조회");
         btnMemberInfo = new JButton("회원대여통계");
         btnToolStats = new JButton("공구대여통계");
         
-
         btnRentTool.setBounds(10, 60, 120, 30);
+        btnReturnTool.setBounds(10, 100, 120, 30);
         btnPostInfo.setBounds(140, 60, 120, 30);
         btnOverdue.setBounds(140, 100, 120, 30);
         btnMemberInfo.setBounds(10, 140, 120, 30);
@@ -38,13 +39,21 @@ public class ToolProgramGUI extends JFrame {
         add(btnOverdue);
         add(btnMemberInfo);
         add(btnToolStats);
+        add(btnReturnTool);
 
         btnRentTool.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 openRentToolWindow();
             }
+            
         });
-
+        
+        btnReturnTool.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                openToolReturnWindow();
+            }
+        });
+            
         btnPostInfo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	openPostInfoWindow();
@@ -91,6 +100,9 @@ public class ToolProgramGUI extends JFrame {
 
     private void openToolStatisticsWindow() {
     	ToolStatisticsWindow toolStatistics = new ToolStatisticsWindow(dbConnection);
+    }
+    private void openToolReturnWindow() {
+    	ToolReturnWindow toolReturnwindow = new ToolReturnWindow(dbConnection);
     }
     
     public static void main(String[] args) {
