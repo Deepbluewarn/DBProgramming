@@ -166,7 +166,6 @@ public class RentToolWindow extends JFrame {
 
                 if (rowsAffected > 0) {
                 	// 대여가 성공했으므로 공구의 보유수량을 감소시킴
-                	updateToolQuantity(toolID, availableQuantity - 1);
                     JOptionPane.showMessageDialog(null, "공구가 성공적으로 대여되었습니다.");
                 } else {
                     JOptionPane.showMessageDialog(null, "대여에 실패했습니다.");
