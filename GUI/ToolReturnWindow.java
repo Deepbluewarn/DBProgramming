@@ -137,8 +137,8 @@ public class ToolReturnWindow extends JFrame {
         }
 
         try {
-            int rentID = (int) rentalTableModel.getValueAt(selectedRow, 0);
-            int toolID = (int) rentalTableModel.getValueAt(selectedRow, 4);
+            int rentID = Integer.parseInt(String.valueOf(rentalTableModel.getValueAt(selectedRow, 0)));
+            int toolID = Integer.parseInt(String.valueOf(rentalTableModel.getValueAt(selectedRow, 4)));
 
             // Update the return date in the database
             String updateReturnDateQuery = "UPDATE 대여기록 SET 반납일 = ? WHERE 대여ID = ?";
