@@ -15,8 +15,6 @@ public class PostInfoWindow extends JFrame {
     private NonEditableTableModel PostTableModel; // 수정이 불가능한 모델 사용
     private DB_Conn_Query dbConnection;
 
-    private JLabel info;
-
     public PostInfoWindow(DB_Conn_Query dbConnection) {
         this.dbConnection = dbConnection;
 
@@ -37,18 +35,6 @@ public class PostInfoWindow extends JFrame {
         memberScrollPane.setBounds(10, 50, 760, 500);
         add(memberScrollPane);
 
-
-        // 후기 상세 조회 기능
-        PostTable.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 2) {
-                    int selectedRow = PostTable.getSelectedRow();
-                    int memberID = Integer.parseInt(PostTable.getValueAt(selectedRow, 0).toString());
-                    openMemberDetailWindow(memberID);
-                }
-            }
-        });
-
         loadMemberData();
 
         JButton btnClose = new JButton("닫기");
@@ -60,10 +46,6 @@ public class PostInfoWindow extends JFrame {
                 dispose();  // 창 닫기
             }
         });
-
-        info = new JLabel("더블클릭 시 후기상세정보 생성");
-        info.setBounds(10, 10, 200, 30);
-        add(info);
 
         // 창을 화면 가운데로 위치시키는 코드
         setLocationRelativeTo(null);
@@ -135,11 +117,6 @@ public class PostInfoWindow extends JFrame {
         for (int i = rowCount - 1; i >= 0; i--) {
             tableModel.removeRow(i);
         }
-    }
-
-    // 회원상세정보창 생성
-    private void openMemberDetailWindow(int memberID) {
-        new PostDetailWindow(dbConnection, memberID);
     }
 
     // JTABLE 더블클릭 시 행에서 자체적으로 수정이 되게함
